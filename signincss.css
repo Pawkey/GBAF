@@ -1,0 +1,40 @@
+h1
+{
+  border-bottom:ridge;
+  margin:50px 50px 50px 50px;
+  padding: 0px 0px 20px 0px;
+}
+
+
+fieldset
+{
+  display: flex;
+  flex-direction : column;
+  justify-content:space-between;
+  border: solid 1px;
+  border-radius :30px;
+  padding:40px;
+  margin-right:600px;
+  margin-left:600px;
+  
+}
+
+
+legend, label, input, select
+{
+  display:flex;
+  margin:10px;
+}
+
+input[type="submit"]
+{
+  display:flex;
+  justify-content:center;
+  margin:auto;
+}
+
+p
+{
+  text-align:center;
+  margin:auto;
+}
