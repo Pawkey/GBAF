@@ -2,14 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8"> 
-
+<title>test</title>
 	<style type="text/css">
+
 header
 {
   display : flex;
   flex-direction : row;
  justify-content : space-around;
   border-bottom : solid 2px;
+  margin: 0.1%;
   
 }
 
@@ -25,17 +27,37 @@ p
 }
 
 	</style>
-
-	<title>test</title>
-
-</head>
+  </head>
 
 <body>
 
   <header>
 
 	<img src="files/LOGO_GBAF_ROUGE.png"/>
-	 <p>Bienvenue <?php echo htmlspecialchars ($_POST['firstname']) . ($_POST['lastname']); ?> !</p>
+	 <p>Bienvenue <?php echo htmlspecialchars ($_SESSION['firstname']) ?> <?php echo htmlspecialchars ($_SESSION['lastname']); ?> !</p>
+/*    
+   <?php 
+if(isset($_SESSION['id']) && $_SESSION['id']!=)
+{
+?>
+<nav>
+    <ul>
+      <li>
+        <form method="post" action="account.php">
+          <input type="submit" name="account" value="Mon compte"/> </form>
+      </li>
+      <li><form method="post" action="homepage.ph?OUT=true"><input type="submit" name="logoff" value="Se déconnecter"/> </form></li>   
+    </ul>
+    </nav>
+ <?php
+}
+else
+{
+ echo 'Bienvenue';
+}
+   ?>
+
+*/
  
   </header> 
   

@@ -19,6 +19,7 @@
 			<input type="password" name="password" required>
 
 			<input type="submit" name="send" value="Se connecter">
+			<p> Mauvais identifiant ou mot de passe. </p>
 			
 		</form>
 		<a href='passwordforgotten.php'> Mot de passe oublié ? </a>

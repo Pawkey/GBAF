@@ -12,18 +12,17 @@ fieldset
   flex-direction : column;
   justify-content:space-between;
   border: solid 1px;
-  border-radius :30px;
-  padding:40px;
-  margin-right:600px;
-  margin-left:600px;
-  
+  border-radius : 27px;
+  padding:0.9%;
+  margin-right: 40%;
+  margin-left:40%;
 }
 
 
 legend, label, input, select
 {
   display:flex;
-  margin:10px;
+  margin:0.9%;
 }
 
 input[type="submit"]

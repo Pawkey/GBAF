@@ -6,16 +6,41 @@
 	<title>test</title>
 
 	<style type="text/css">
+
+
+
+#main{
+
+max-width:auto;
+
+min-height:auto;
+
+margin:0.1%;
+
+position:relative;
+padding : 0.1%;
+
+}
+body, html
+{
+	margin: 0%;
+}
+
 footer
 {
+ 
   display :flex;
   flex-direction: row;
+  bottom: 0%;
   justify-content: space-around;
   height : 100px;
   align-items : center;
   background-color : black;
   color : white;
+  width:100%;
+  margin: 0.1%;
 }
+
 
 	</style>
 

@@ -22,10 +22,7 @@
 
 			<label for="username">Pseudo :</label>
 			<input type="text" name="username" id="username" required>
-
-
-
-			
+			<p> Pseudo déjà utilisé.</p>
 
 			<label for="password">Mot de passe :</label>
 			<input type="password" name="password" id="password" required>
@@ -40,7 +37,7 @@
 			</select>
 
 			<label for="answer_question">Votre réponse :</label>
-			<input type="text" name="answer_question" id="answer_question" required=>
+			<input type="text" name="answer_question" id="answer_question" required>
 
 			<input type="submit" name="send" value="Envoyer">
 	</fieldset>
