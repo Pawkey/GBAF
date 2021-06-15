@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title> Accueil </title>
-</head>
-<body>
+<?php
+session_start();
+?>
+<title>Accueil</title>
 	<?php include("header.php"); ?>
 	<h1>Qu'est ce ques GBAF ?</h1>
 	<p>GBAF propose aux salariés des grands groupes
@@ -34,7 +31,4 @@ bancaires et financiers.</p>
 <p>La CDE (Chambre Des Entrepreneurs) accompagne les entreprises dans leurs démarches de formation. </p>
 <form method="post" action="cde.php"><input type="submit" name="send" value="En savoir plus"></form>
 
-	<?php include("footer.php"); ?>
-
-</body>
-</html>
+<?php include("footer.php"); ?>

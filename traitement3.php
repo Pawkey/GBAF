@@ -1,4 +1,5 @@
 <?php
+session_start();
 try
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');
@@ -17,7 +18,8 @@ $isPasswordCorrect = password_verify(($_POST['secret_question'], $resultat['ques
 
 if (!$resultat)
 {
-	echo 'Identifiant ou réponse incorrectes.'
+	$_SESSION['error'] = 'Identifiant ou mot de passe incorrectes.'
+	header('Location : passwordforgotten.php')
 }
 else
 {
@@ -25,12 +27,14 @@ else
 	{
 		session_start();
 		$_SESSION['id'] = $resultat['id'];
-		$_SESSION['username'] = $_POST['username'];
+		$_SESSION['username'] = $resultat['pseudo'];
 		echo 'Un email vous a êtez envoyé.';
 	}
 	else
 	{
-		echo 'Identifiant ou réponse incorrectes.';
+		$_SESSION['error'] = 'Identifiant ou mot de passe incorrectes.'
+		header('Location : passwordforgotten.php')
+}
 	}
 }
 	?>

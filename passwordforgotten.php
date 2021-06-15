@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title> Mot de passe oublié </title>
-</head>
-<body>
+<?php 
+session_start();
+?>
+<title>Retrouver son mot de passe</title>
 	<?php include("header.php"); ?>
 	<h1>Mot de passe oublié</h1>
 	<form method="post" action="traitement3.php">
@@ -29,8 +26,8 @@
 			
 		</fieldset>
 	</form>
+	<?php if($_SESSION['error']) : ?>
+	<?= $_SESSION['error']; ?>
+	<?php endif ?>
 
-	<?php include("footer.php"); ?>
-
-</body>
-</html>
+<?php include("footer.php"); ?>

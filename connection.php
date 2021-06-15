@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title> Connectez-vous à GBAF</title>
-</head>
-<body>
+<?php
+session_start();
+?>
+<title>Connexion</title>
+
 <?php include("header.php"); ?>
 
 
@@ -21,8 +19,11 @@
 			<input type="submit" name="send" value="Se connecter">
 			
 		</form>
+
+		<?php if ($_SESSION['error']): ?>
+		<?= $_SESSION['error']; ?>
+		<?php endif ?>
+
 		<a href='passwordforgotten.php'> Mot de passe oublié ? </a>
 
 <?php include("footer.php"); ?>
-</body>
-</html>

@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
+<?php
+session_start();
+?>
 	<link rel="stylesheet" href="signincss.css"/>
 	<title>S'inscrire à GBAF</title>
-</head>
-<body>
+
 	<div id="main">
 	<?php include("header.php"); ?>
 	<h1>Formulaire d'inscription</h1>
@@ -22,10 +20,10 @@
 
 			<label for="username">Pseudo :</label>
 			<input type="text" name="username" id="username" required>
-
-
-
 			
+			<?php if ($_SESSION['error']): ?>
+			<?= $_SESSION['error']; ?>
+			<?php endif ?>
 
 			<label for="password">Mot de passe :</label>
 			<input type="password" name="password" id="password" required>
@@ -49,8 +47,4 @@
 	<p>Déjà inscris ? <a href="connection.php">Connecte-toi!</a> </p>
 </section>
 	<?php include("footer.php"); ?>
-</div>
-
-
-</body>
-</html>
+	</div>

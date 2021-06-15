@@ -1,27 +1,35 @@
 <?php
 session_start();
 
+try
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');
+	}
+	catch(Exception $e)
+	{
+		die('Erreur :'.$e->getMessage());
+	}
+	
+$req = $bdd->prepare('SELECT * FROM members WHERE id = :id');
+$req->execute(array(
+'id'=> $_SESSION['id']));
+$resultat = $req->fetch();
+
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Mon compte</title>
-</head>
-<body>
+
+<title>Mon compte</title>
+
 	<div id="main">
 	<?php include("header.php"); ?>
 
 <h1>Mon compte</h1>
 <p>
-	Nom : <?php echo $_SESSION['lastname']; ?><br/>
-	Prénom : <?php echo $_SESSION['firstname']; ?><br />
-	Pseudo : <?php echo $_SESSION['username']; ?> <br />
+	Nom : <?php echo $resultat['lastname']; ?><br/>
+	Prénom : <?php echo $resultat['firstname']; ?><br />
+	Pseudo : <?php echo $resultat['pseudo']; ?> <br />
 </p>
+
 
 <?php include("footer.php"); ?>
 
-</div>
-
-</body>
-</html>
+	</div>

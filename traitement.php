@@ -31,10 +31,10 @@ if (isset($_POST['password']) AND !empty($_POST['password']))
 	$verify->execute(array($_POST['username']));
 	$username = $verify->fetch();
 
-	if (isset($username)&&!empty($username))
+	if (isset($username))
 	{
-
-  		header('Location: signin2.php');
+		$_SESSION['error'] = "Pseudo déjà utilisé.";
+  		header('Location: signin.php');
   		
 	}
 	else
@@ -42,8 +42,10 @@ if (isset($_POST['password']) AND !empty($_POST['password']))
 		$pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 	
-	$req = $bdd->prepare('INSERT INTO members (pseudo, pass, question, answer) VALUES (:pseudo, :pass, :question, :answer)');
+	$req = $bdd->prepare('INSERT INTO members (lastname, firstname, pseudo, pass, question, answer) VALUES (:lastname, :firstname,:pseudo, :pass, :question, :answer)');
 	$req->execute(array(
+		'lastname' => $_POST['lastname'],
+		'firstname' => $_POST['firstname'],
 		'pseudo' => $_POST['username'],
 		'pass' => $pass_hache,
 		'question' => $_POST['secret_question'],

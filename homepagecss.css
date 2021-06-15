@@ -1,0 +1,27 @@
+h1
+{
+  text-align : left ;
+}
+section
+{
+  border :solid;
+  border-width : 1px;
+  padding :5px;
+}
+div
+{
+  border: solid;
+  border-width : 0.1px;
+  margin : 10px;
+  text-align:left;
+  
+}
+img, p
+{
+  
+}
+form
+{
+  text-align :right;
+  margin :1pc;
+}
