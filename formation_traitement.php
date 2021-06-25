@@ -53,6 +53,37 @@ header('Location : formation_co.php');
 		$_SESSION['error'] = "Vous ne pouvez pas mettre plus de 1 commentaire par agence.";
   		header('Location: formation_co.php');
 	}
+
+	$resultat->closeCursor();
+
+	
+$req = $bdd->prepare('SELECT * FROM comments WHERE id_user = ?');
+	$req->execute(array(
+		$_SESSION['id'],
+		$_POST['agence'],
+		$_POST['like'],
+		$_POST['dislike']));
+	$resultat = $req->fetch();
+
+	if (!$resultat)
+	{
+		$req = $bdd->prepare('INSERT INTO comments (id_user, agence, like ) VALUES (?,?, ?)');
+	$req->execute(array(
+		$_SESSION['id'],
+		$_POST['agence'],
+		$_POST['like']));
+header('Location : formation_co.php');
+}
+else 
+{
+	$req = $bdd->prepare('INSERT INTO comments (id_user, agence, dislike ) VALUES (?,?, ?)');
+	$req->execute(array(
+		$_SESSION['id'],
+		$_POST['agence'],
+		$_POST['dislike']));
+header('Location : formation_co.php');
+}
+
 ?>
 
 
@@ -69,7 +100,4 @@ header('Location : formation_co.php');
 
 
 
-	<?php /* if(isset($_SESSION['id']) AND isset($_POST['comment1']) AND isset($_POST['agence'] == "formation_co")) : ?>
-	<?= $_SESSION["error"] = "Vous ne pouvez pas mettre plus de 1 commentaire par agence.";
-		header ('Location : formation_co.php'); ?>
-	<?php endif */?>
+

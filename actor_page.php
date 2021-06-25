@@ -1,20 +1,13 @@
 <?php
 session_start();
+
 ?>
-<title>Formation&co</title>
+<title><?php echo $_GET['title'] ?></title>
 <?php include("header.php"); ?>
 <img src="files/formation_co.png">
-<h2></h2>
-<p>Formation&co est une association française présente sur tout le territoire.
-Nous proposons à des personnes issues de tout milieu de devenir entrepreneur grâce à un crédit et un accompagnement professionnel et personnalisé.
-Notre proposition :
-<ul> 
-<li>un financement jusqu’à 30 000€ ;</li>
-<li>un suivi personnalisé et gratuit ;</li>
-<li>une lutte acharnée contre les freins sociétaux et les stéréotypes.</li>
-</ul>
-Le financement est possible, peu importe le métier : coiffeur, banquier, éleveur de chèvres… . Nous collaborons avec des personnes talentueuses et motivées.
-Vous n’avez pas de diplômes ? Ce n’est pas un problème pour nous ! Nos financements s’adressent à tous.</p>
+<h2><?php echo $_GET['title'] ?></h2>
+
+
 
 <form  method="post" action="formation_traitement.php">
 	<input type="submit" name="like" value="like">
@@ -43,12 +36,12 @@ try
 
 
 $req = $bdd->prepare(
-	'SELECT members.pseudo, comments.comment 
+	'SELECT acteur.id, comments.comment 
 	FROM comments
-	LEFT JOIN members ON members.id = comments.id_user
-	WHERE comments.agence = ? ');
+	LEFT JOIN acteur ON acteur.id = comments.acteur_id
+	WHERE comments.acteur_id = ? ');
 $req->execute(array(
-"formation_co"));
+));
 ?>
 
 <?php while ($resultat = $req->fetch()) : ?>

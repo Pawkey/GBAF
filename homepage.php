@@ -1,8 +1,12 @@
 <?php
 session_start();
+
 ?>
+
 <title>Accueil</title>
+<div id="main">
 	<?php include("header.php"); ?>
+	
 	<h1>Qu'est ce ques GBAF ?</h1>
 	<p>GBAF propose aux salariés des grands groupes
 français un point d’entrée unique, répertoriant un grand nombre d’informations
@@ -11,24 +15,29 @@ bancaires et financiers.</p>
 
 	<h2> Les acteurs et partenaires</h2>
 
-	<h3>Formation&co</h3>
-	<img src="files/formation_co.png"/>
-	<p>Formation&co est une association française présente sur tout le territoire.</p>
-<form method="post" action="formation_co.php"><input type="submit" name="send" value="En savoir plus"></form>
+<?php 
+try
+  {
+    $bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');
+  }
+  catch(Exception $e)
+  {
+    die('Erreur :'.$e->getMessage());
+  }
 
-	<h3>Protectpeople</h3>
-	<img src="files/protectpeople.png"/>
-	<p>Protectpeople finance la solidarité nationale.</p>
-<form method="post" action="protectpeople.php"><input type="submit" name="send" value="En savoir plus"></form>
+$req = $bdd->query('SELECT * FROM acteur');
 
-<h3>Dsa France</h3>
-<img src="files/Dsa_france.png"/>
-<p>Dsa France accélère la croissance du territoire et s’engage avec les collectivités territoriales.</p>
-<form method="post" action="dsa_france.php"><input type="submit" name="send" value="En savoir plus"></form>
+?>
+<?php while ($resultat = $req->fetch()) : ?>
 
-<h3>CDE</h3>
-<img src="files/CDE.png"/>
-<p>La CDE (Chambre Des Entrepreneurs) accompagne les entreprises dans leurs démarches de formation. </p>
-<form method="post" action="cde.php"><input type="submit" name="send" value="En savoir plus"></form>
+ <?= ($resultat['titre']) /*. '<br/>' . ($resultat['image']) */ . '<br/>' . ($resultat['description']) ?>
+ <form method="post" action="actor_page.php">
+	<input type="submit" name="suite" value="Lire la suite" >
+	
+</form>;
+}
+?>
+<?php endwhile ?>
 
-<?php include("footer.php"); ?>
+ <?php include("footer.php"); ?>
+</div>
