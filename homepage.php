@@ -25,15 +25,14 @@ try
     die('Erreur :'.$e->getMessage());
   }
 
-$req = $bdd->query('SELECT * FROM acteur');
+$req = $bdd->query('SELECT * FROM acteur'); ?>
 
-?>
 <?php while ($resultat = $req->fetch()) : ?>
 
  <h2><?= $resultat['titre']?> </h2>   <br/> 
  <div> <?php echo $resultat['description'] ?> </div>
 	<a href="actor_page.php?id=1">  Lire la suite </a>
-
+  
 <?php endwhile ?>
 
  <?php include("footer.php"); ?>
