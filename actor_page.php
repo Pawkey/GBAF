@@ -4,7 +4,7 @@ session_start();
 ?>
 <title><?php echo $_GET['title'] ?></title>
 <?php include("header.php"); ?>
-<img src="files/formation_co.png">
+
 <h2><?php echo $_GET['title'] ?></h2>
 
 
