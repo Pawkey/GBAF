@@ -20,7 +20,7 @@ session_start();
 			
 		</form>
 
-		<?php if ($_SESSION['error']): ?>
+		<?php if (isset($_SESSION['error'])): ?>
 		<?= $_SESSION['error']; ?>
 		<?php endif ?>
 

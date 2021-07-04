@@ -1,5 +1,6 @@
 <?php
 session_start();
+//Traitement pour le mot de passe oublié
 try
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');

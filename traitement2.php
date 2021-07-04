@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//traitement pour la connexion 
 try
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');
@@ -10,7 +10,7 @@ try
 		die('Erreur :'.$e->getMessage());
 	}
 	
-$req = $bdd->prepare('SELECT id, pass FROM members WHERE pseudo = :pseudo');
+$req = $bdd->prepare('SELECT * FROM members WHERE pseudo = :pseudo');
 $req->execute(array(
 'pseudo'=> $_POST['username']));
 $resultat = $req->fetch();
@@ -30,6 +30,8 @@ else
 	{
 		$_SESSION['id'] = $resultat['id'];
 		$_SESSION['username'] = $_POST['username'];
+		$_SESSION['firstname'] = $resultat['firstname'];
+		$_SESSION['lastname'] = $resultat['lastname'];
 		header('Location: account.php');
 	}
 	else

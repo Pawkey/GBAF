@@ -1,18 +1,15 @@
-<?
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
+<?php
+session_start();
+?>
 	<link rel="stylesheet" href="signincss.css"/>
 	<title>S'inscrire à GBAF</title>
-</head>
-<body>
+
 	<div id="main">
 	<?php include("header.php"); ?>
 	<h1>Formulaire d'inscription</h1>
 	<section>
 
-	<form method="post" action="traitement.php">
+	<form method="post" action="index.php">
 	<fieldset>
 		<legend>Vos coordonnées</legend>
 			<label for="lastname">Nom :</label>
@@ -23,7 +20,10 @@
 
 			<label for="username">Pseudo :</label>
 			<input type="text" name="username" id="username" required>
-			<p> Pseudo déjà utilisé.</p>
+			
+			<?php if (isset($_SESSION['error'])) : ?>
+			<?= $_SESSION['error']; ?>
+			<?php endif ?>
 
 			<label for="password">Mot de passe :</label>
 			<input type="password" name="password" id="password" required>
@@ -38,7 +38,7 @@
 			</select>
 
 			<label for="answer_question">Votre réponse :</label>
-			<input type="text" name="answer_question" id="answer_question" required>
+			<input type="text" name="answer_question" id="answer_question" required=>
 
 			<input type="submit" name="send" value="Envoyer">
 	</fieldset>
@@ -47,8 +47,51 @@
 	<p>Déjà inscris ? <a href="connection.php">Connecte-toi!</a> </p>
 </section>
 	<?php include("footer.php"); ?>
-</div>
+	</div>
+
+<?php
+
+if (isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['username']) && isset($_POST['password']) && (isset($_POST['secret_question'])) && (isset($_POST['answer_question'])))
+{
 
 
-</body>
-</html>
+		try
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');
+	}
+	catch(Exception $e)
+	{
+		die('Erreur :'.$e->getMessage());
+	}
+	
+	$verify = $bdd->prepare('SELECT pseudo FROM members WHERE pseudo = ?');
+	$verify->execute(array($_POST['username']));
+	$username = $verify->fetch();
+	
+	if ($username == true) 
+	{
+		
+		$_SESSION['error'] = "Pseudo déjà utilisé.";
+  		header('Location: index.php');
+  		
+	}
+	else
+	{
+		$pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+	
+	$req = $bdd->prepare('INSERT INTO members (lastname, firstname, pseudo, pass, question, answer) VALUES (:lastname, :firstname,:pseudo, :pass, :question, :answer)');
+	$req->execute(array(
+		'lastname' => $_POST['lastname'],
+		'firstname' => $_POST['firstname'],
+		'pseudo' => $_POST['username'],
+		'pass' => $pass_hache,
+		'question' => $_POST['secret_question'],
+		'answer' => $_POST['answer_question']));
+	header('Location: connection.php');
+	
+	}
+}
+?>
+
+
