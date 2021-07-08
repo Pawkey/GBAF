@@ -20,9 +20,13 @@ session_start();
 			
 		</form>
 
-		<?php if ($_SESSION['error']): ?>
-		<?= $_SESSION['error']; ?>
-		<?php endif ?>
+
+
+
+
+
+
+
 
 		<a href='passwordforgotten.php'> Mot de passe oublié ? </a>
 

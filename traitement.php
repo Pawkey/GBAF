@@ -1,5 +1,6 @@
 <?php
 session_start();
+//Traitement inscription
 
 if (isset($_POST['firstname']) AND !empty($_POST['firstname']))
 {
@@ -18,39 +19,4 @@ if (isset($_POST['password']) AND !empty($_POST['password']))
 	$_SESSION['password'] = $_POST['password'];
 } 
 			
-	try
-	{
-		$bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8','root','root');
-	}
-	catch(Exception $e)
-	{
-		die('Erreur :'.$e->getMessage());
-	}
-	
-	$verify = $bdd->prepare('SELECT pseudo FROM members WHERE pseudo = ?');
-	$verify->execute(array($_POST['username']));
-	$username = $verify->fetch();
-
-	if (isset($username))
-	{
-		$_SESSION['error'] = "Pseudo déjà utilisé.";
-  		header('Location: signin.php');
-  		
-	}
-	else
-	{
-		$pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-	
-	$req = $bdd->prepare('INSERT INTO members (lastname, firstname, pseudo, pass, question, answer) VALUES (:lastname, :firstname,:pseudo, :pass, :question, :answer)');
-	$req->execute(array(
-		'lastname' => $_POST['lastname'],
-		'firstname' => $_POST['firstname'],
-		'pseudo' => $_POST['username'],
-		'pass' => $pass_hache,
-		'question' => $_POST['secret_question'],
-		'answer' => $_POST['answer_question']));
-	header('Location: account.php');
-	
-	}
 ?>
