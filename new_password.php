@@ -16,12 +16,15 @@ $req->execute(array(
 $ins = $req->fetch();
 
  if (isset($_POST['send']))
-		{
-			
-			$update = $bdd->prepare('UPDATE members SET pass = :pass WHERE id = :id');
-			$update->execute(array(
-				'pass' => password_hash($_POST["password"]),
-				'id' => $ins["id"]));
-			header('Location: connection.php');
-		}
+{	
+	$update = $bdd->prepare('UPDATE members SET pass = ? WHERE id = ?');
+	$update->execute(array(password_hash($_POST["password"]), $ins["id"]));
+
+	header('Location: connection.php');
+}
+else
+{
+	echo "Oh oh il y a eu un problème !";
+
+}
 ?>

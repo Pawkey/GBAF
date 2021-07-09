@@ -30,6 +30,7 @@ $req = $bdd->query('SELECT * FROM acteur'); ?>
 <?php while ($resultat = $req->fetch()) : ?>
 
  <h2><?= $resultat['titre']?> </h2>   <br/> 
+ <?php echo $resultat["image"]; ?>
  <div> <?php echo $resultat['description'] ?> </div>
 	<a href="actor_page.php?id=<?php echo $resultat["id"]; ?>"> Lire la suite </a>
   

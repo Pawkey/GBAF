@@ -34,11 +34,11 @@ catch(Exception $e)
 ?>
 
 
-<h2> <?php echo $detail_article['titre']; ?> </h2>
+<h2> <?php echo $detail_article["titre"]; ?> </h2>
 	<section> 
-		<img src="$detail_article['image']">
+		<?php echo $detail_article["image"]; ?>
 		
-		<?php echo $detail_article['description']; ?>
+		<?php echo $detail_article["description"]; ?>
 	</section>
 
 <a href="like-dislike.php?t=1&id=<?php echo $detail_article["id"] ?>"> J'aime </a> (<?= $likes ?>)
