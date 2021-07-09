@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-include("header.php"); 
+ 
 
 	$id_acteur = htmlspecialchars( $_GET['id']);
 try
@@ -32,7 +31,9 @@ catch(Exception $e)
 
 	
 ?>
+<title><?php echo $detail_article["titre"]; ?> </title>
 
+<?php include("header.php"); ?>
 
 <h2> <?php echo $detail_article["titre"]; ?> </h2>
 	<section> 
